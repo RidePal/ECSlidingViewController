@@ -44,7 +44,7 @@
 - (void)updateInteractiveTransition:(CGFloat)percentComplete {
     if (!self.isActive) return;
     
-    [self.transitionContext updateInteractiveTransition:_percentComplete];
+    [self.transitionContext updateInteractiveTransition:self.percentComplete];
     
     CGFloat boundedPercentage;
     if (percentComplete > 1.0) {
@@ -55,9 +55,9 @@
         boundedPercentage = percentComplete;
     }
     
-    _percentComplete = boundedPercentage;
+    self.percentComplete = boundedPercentage;
     CALayer *layer = [self.transitionContext containerView].layer;
-    CFTimeInterval pausedTime = [self.animationController transitionDuration:self.transitionContext] * _percentComplete;
+    CFTimeInterval pausedTime = [self.animationController transitionDuration:self.transitionContext] * self.percentComplete;
     layer.speed = 0.0;
     layer.timeOffset = pausedTime;
 }
@@ -84,6 +84,8 @@
     layer.beginTime = 0.0;
     CFTimeInterval timeSincePause = [layer convertTime:CACurrentMediaTime() fromLayer:nil] - pausedTime;
     layer.beginTime = timeSincePause;
+	
+	self.percentComplete = 100;
 }
 
 #pragma mark - CADisplayLink action
@@ -91,16 +93,16 @@
 - (void)reversePausedAnimation:(CADisplayLink *)displayLink {
     double percentInterval = displayLink.duration / [self.animationController transitionDuration:self.transitionContext];
     
-    _percentComplete -= percentInterval;
+    self.percentComplete -= percentInterval;
     
-    if (_percentComplete <= 0.0) {
-        _percentComplete = 0.0;
+    if (self.percentComplete <= 0.0) {
+        self.percentComplete = 0.0;
         [displayLink invalidate];
     }
     
     [self updateInteractiveTransition:self.percentComplete];
     
-    if (_percentComplete == 0.0) {
+    if (self.percentComplete == 0.0) {
         self.isActive = NO;
         CALayer *layer = [self.transitionContext containerView].layer;
         [layer removeAllAnimations];

@@ -43,7 +43,7 @@
  
  The value in this property reflects the last value passed to the `updateInteractiveTransition:` method.
  */
-@property (nonatomic, assign, readonly) CGFloat percentComplete;
+@property (nonatomic, assign) CGFloat percentComplete;
 
 /**
  Updates the completion percentage of the transition. In general terms, this method is used to "scrub the playhead" of the animation defined by the `animationController`.
