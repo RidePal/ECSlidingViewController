@@ -85,7 +85,7 @@
     CFTimeInterval timeSincePause = [layer convertTime:CACurrentMediaTime() fromLayer:nil] - pausedTime;
     layer.beginTime = timeSincePause;
 	
-	self.percentComplete = 100;
+	self.percentComplete = 1.0;
 }
 
 #pragma mark - CADisplayLink action
