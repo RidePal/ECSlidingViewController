@@ -26,6 +26,7 @@
 #import "ECSlidingConstants.h"
 
 @class ECSlidingViewController;
+@class ECSlidingInteractiveTransition;
 
 /**
  The `ECSlidingViewControllerLayout` protocol is adopted by an object that specifies a custom layout for the child view controllers.
@@ -117,6 +118,7 @@
     UIViewController *_underRightViewController;
 }
 
+@property (nonatomic, strong) ECSlidingInteractiveTransition *defaultInteractiveTransition;
 
 ///----------------------------------------
 /// @name Creating Sliding View Controllers

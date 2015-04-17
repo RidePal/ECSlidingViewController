@@ -30,7 +30,6 @@
 @interface ECSlidingViewController()
 @property (nonatomic, assign) ECSlidingViewControllerOperation currentOperation;
 @property (nonatomic, strong) ECSlidingAnimationController *defaultAnimationController;
-@property (nonatomic, strong) ECSlidingInteractiveTransition *defaultInteractiveTransition;
 @property (nonatomic, strong) id<UIViewControllerAnimatedTransitioning> currentAnimationController;
 @property (nonatomic, strong) id<UIViewControllerInteractiveTransitioning> currentInteractiveTransition;
 @property (nonatomic, strong) UIView *gestureView;
